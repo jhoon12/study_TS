@@ -1,13 +1,17 @@
-const INCREASE = "counter/INCREASE" as const;
-const DECREASE = "counter/DECREASE" as const;
-const INCREASE_BY = "counter/INCREASE_BY" as const;
+import {
+    createAction,
+    ActionType,
+    createReducer
+  } from 'typesafe-actions';
 
-export const increase = () => ({ type: INCREASE, payload: "b" });
-export const decrease = () => ({ type: DECREASE, payload: 1 });
-export const increaseBy = (diff: number) => ({
-  type: INCREASE_BY,
-  payload: diff,
-});
+
+const INCREASE = "counter/INCREASE" 
+const DECREASE = "counter/DECREASE" 
+const INCREASE_BY = "counter/INCREASE_BY" 
+
+export const increase = createAction(INCREASE)();
+export const decrease = createAction(DECREASE)();
+export const increaseBy = createAction(INCREASE_BY)<number>();
 type CounterAction =
   | ReturnType<typeof increase>
   | ReturnType<typeof decrease>

@@ -1,4 +1,3 @@
-import { type } from "os";
 
 const ADD_TODO = "todos/ADD_TODO" as const;
 const TOGGLE_TODO = "todos/TOGGLE_TODO" as const;
