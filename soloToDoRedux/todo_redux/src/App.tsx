@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo, removeTodo } from "./modules/counter";
+import { RootState } from "./modules/index";
 
 function App() {
+  const [input, setInput] = useState<string>("");
+  const dispatch = useDispatch();
+  const list = useSelector((store: RootState) => store.todoReducer);
+
+  const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+  const addInput = () => {
+    dispatch(addTodo(input));
+    setInput("");
+  };
+  const remove = (id: number) => {
+    dispatch(removeTodo(id));
+  } 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input onChange={changeInput} value={input} />
+      <button onClick={addInput}>입력</button>
+      <ul>
+        {list.map((item) => {
+          console.log(item);
+          return (
+            <>
+              <li>
+                {item.text}
+                <button onClick={()=>remove(item.id)}>삭제</button>
+              </li>
+            </>
+          );
+        })}
+      </ul>
     </div>
   );
 }
