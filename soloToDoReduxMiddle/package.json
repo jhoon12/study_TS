@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@types/react-redux": "7.1.16",
+    "react-redux": "7.2.2",
+    "redux": "4.0.5",
+    "redux-saga": "1.1.3"
+  }
+}

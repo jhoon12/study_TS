@@ -22,16 +22,17 @@ const todoState: TodoStateType = [
     text: "기획",
   },
 ];
- const todoReducer = (state: TodoStateType = todoState, action: ActionType) => {
+const todoReducer = (state: TodoStateType = todoState, action: ActionType) => {
   switch (action.type) {
-    case ADD_TODO:{
-        id++;
-        return state.concat({ text: action.text, id: id });
+    case ADD_TODO: {
+      id++;
+      return state.concat({ text: action.text, id: id });
     }
-    case REMOVE_TODO:{
-        return state.filter(item => item.id !== action.id)
+    case REMOVE_TODO: {
+      return state.filter((item) => item.id !== action.id);
     }
-    default: return state;
+    default:
+      return state;
   }
 };
 export default todoReducer;
