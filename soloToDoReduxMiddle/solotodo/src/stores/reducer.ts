@@ -25,7 +25,7 @@ const reducer = (
       return state.concat({ text: action.text, id: Date.now()});
     }
     case REMOVETODOASYNC: {
-      return state.filter((item) => action.id === item.id);
+      return state.filter((item) => action.id !== item.id);
     }
     default:
       return state;

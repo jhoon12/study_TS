@@ -9,11 +9,11 @@ export const removeToDo = (payload: number) => {
 export const addToDoItemAsync = (payload: string) => {
   return { type: ADDTODOASYNC, text: payload };
 };
-export const removeToDoAsync = (payload: number) => {
+export const removeToDoItemAsync = (payload: number) => {
   return { type: REMOVETODOASYNC, id: payload };
 };
 type actionType =
   | ReturnType<typeof addToDoItemAsync>
-  | ReturnType<typeof removeToDoAsync>;
+  | ReturnType<typeof removeToDoItemAsync>;
 
 export default actionType;

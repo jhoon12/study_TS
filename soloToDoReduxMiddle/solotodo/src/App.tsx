@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { addToDo } from "./action/action.";
+import { addToDo, removeToDo } from "./action/action.";
 import { useSelector, useDispatch } from "react-redux";
-import reducer, {ReducerState} from './stores/reducer';
+import { ReducerState } from "./stores/reducer";
 function App() {
   const [text, setText] = useState<string>("");
-  const store = useSelector((store : ReducerState[]) => store);
+  const store = useSelector((store: ReducerState[]) => store);
   const dispatch = useDispatch();
-  console.log(store)
+  console.log(store);
   return (
-   
     <>
       <div>
         <input
@@ -20,18 +19,26 @@ function App() {
         <button
           onClick={() => {
             dispatch(addToDo(text));
-            setText('');
+            setText("");
           }}
         >
           입력
         </button>
       </div>
       <ul>
-       {
-         store.map(ele =>(
-           <li>{ele.text}</li>
-         ))
-       }
+        {store.map((ele) => (
+          <>
+            <li>{ele.text}</li>
+            <div
+              onClick={() => {
+                console.log(ele.id)
+                dispatch(removeToDo(ele.id));
+              }}
+            >
+              X
+            </div>
+          </>
+        ))}
       </ul>
     </>
   );
